@@ -1,3 +1,4 @@
+import "./menu.css";
 export function MainMenu() {
   return (
     <ul id="top-menu-bar">

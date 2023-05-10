@@ -17,15 +17,11 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 #content {
   flex: 1;
   display: flex;
   flex-direction: row;
-}
-
-#side-menu {
-  flex: 1;
-  padding: 10px;
 }
 
 #main {
@@ -76,68 +72,6 @@ h1 {
 
 h2 {
   color: #fff;
-}
-
-/* Navigation */
-.navigation {
-  display: flex;
-  justify-content: flex-end;
-  background-color: #772cff;
-  padding-left: 15px;
-}
-
-#top-menu-bar {
-  color: #fff;
-  margin: 0;
-  padding: 0;
-}
-
-#top-menu-bar li {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  position: relative;
-}
-
-#top-menu-bar li:before {
-  content: "";
-  position: absolute;
-  width: 1px;
-  height: 80%;
-  top: 10%;
-  background-color: #fff;
-}
-
-#top-menu-bar a {
-  display: inline-block;
-  color: #fff;
-  text-decoration: none;
-  padding: 15px 40px;
-  background-image: linear-gradient(-249deg, transparent, #772cff);
-  box-shadow: 0 0 0 1px transparent;
-  background-color: #772cff;
-  transition: background-color 0.9s;
-}
-
-#top-menu-bar a span {
-  font-size: 20px;
-}
-
-#top-menu-bar a:hover,
-#top-menu-bar a.active {
-  background-color: #85e7ff;
-}
-
-.endorcements {
-  color: white;
-}
-
-li.important {
-  font-weight: bolder;
-}
-
-li.important .endorcements {
-  color: #772cff;
 }
 
 /* Form */
@@ -201,33 +135,7 @@ form textarea:focus-visible {
     text-align: center;
   }
 
-  .navigation {
-    grid-template-columns: 1fr;
-  }
-
-  #top-menu-bar {
-    text-align: center;
-  }
-
-  #top-menu-bar li:first-child:before {
-    content: none;
-  }
-
   #content {
     flex-direction: column-reverse;
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  .navigation > span {
-    display: none;
-  }
-
-  #top-menu-bar a {
-    padding: 5px;
-  }
-
-  #top-menu-bar a span {
-    font-size: 18px;
   }
 }

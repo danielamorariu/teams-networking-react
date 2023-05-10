@@ -1,3 +1,4 @@
+import "./menu.css";
 export function SideMenu() {
   return (
     <div id="side-menu">
