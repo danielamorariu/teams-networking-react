@@ -13,8 +13,8 @@ export function MainMenu() {
         </a>
       </li>
       <li>
-        <a href="#" data-page="projects">
-          <span data-page="projects">Projects</span>
+        <a href="#" data-page="teams">
+          <span data-page="projects">Teams</span>
         </a>
       </li>
       <li>

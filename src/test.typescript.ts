@@ -12,5 +12,5 @@ const conf = getConf();
 function a(b) {
   // noUnusedLocals
   const c = 1;
-  return b * 2;
+  return b * 2 + c;
 }
