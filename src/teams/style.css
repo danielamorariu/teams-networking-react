@@ -5,21 +5,27 @@ table {
 
 table th,
 table td {
-  border: 1px solid #29a7e1;
+  border: 1px solid #772cff;
   padding: 5px;
 }
 
-table th {
-  background-color: #29a7e1;
+table td a {
   color: #fff;
 }
 
+table th {
+  background-color: #85e7ff;
+  color: #fff;
+  background-image: linear-gradient(-249deg, transparent, #772cff);
+  box-shadow: 0 0 0 1px transparent;
+}
+
 table tr {
-  background-color: #e9f6f8;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 table tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: rgba(133, 231, 255, 0.2);
 }
 
 table tfoot input[type="text"] {
