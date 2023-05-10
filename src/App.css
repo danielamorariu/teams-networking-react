@@ -80,8 +80,8 @@ h2 {
 
 /* Navigation */
 .navigation {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
+  display: flex;
+  justify-content: flex-end;
   background-color: #772cff;
   padding-left: 15px;
 }
@@ -112,7 +112,7 @@ h2 {
   display: inline-block;
   color: #fff;
   text-decoration: none;
-  padding: 15px 25px;
+  padding: 15px 40px;
   background-image: linear-gradient(-249deg, transparent, #772cff);
   box-shadow: 0 0 0 1px transparent;
   background-color: #772cff;
