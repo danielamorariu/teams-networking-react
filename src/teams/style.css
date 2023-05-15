@@ -2,7 +2,12 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
-
+table thead {
+  background-color: #85e7ff;
+  color: #fff;
+  background-image: linear-gradient(90deg, transparent, #772cff);
+  box-shadow: 0 0 0 1px transparent;
+}
 table th,
 table td {
   border: 1px solid #772cff;
@@ -11,13 +16,6 @@ table td {
 
 table td a {
   color: #fff;
-}
-
-table th {
-  background-color: #85e7ff;
-  color: #fff;
-  background-image: linear-gradient(-249deg, transparent, #772cff);
-  box-shadow: 0 0 0 1px transparent;
 }
 
 table tr {

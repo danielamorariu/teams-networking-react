@@ -1,5 +1,5 @@
 import { SideMenu } from "../menu/SideMenu";
-import { TeamsTable } from "../teams/TeamsTable";
+import { TeamsTableWrapper } from "../teams/TeamsTable";
 
 export function ContentWrapper() {
   return (
@@ -20,7 +20,7 @@ export function ContentWrapper() {
           <ul></ul>
         </div>
         <div className="page" id="teaaams" style={{ display: "block" }}>
-          <TeamsTable />
+          <TeamsTableWrapper />
         </div>
         <div className="page" id="languages">
           Languages content ... Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
