@@ -1,3 +1,4 @@
+import React from "react";
 import "./style.css";
 
 type Team = {
@@ -11,6 +12,7 @@ type Props = {
   loading: boolean;
   teams: Team[];
 };
+
 export function TeamsTable(props: Props) {
   console.warn("props", props);
   return (
@@ -93,56 +95,129 @@ export function TeamsTable(props: Props) {
   );
 }
 
-export function TeamsTableWrapper() {
-  const teams = [
-    {
-      id: "toze8j1610313009673",
-      promotion: "html",
-      members: "Nicolae Matei, HTML",
-      name: "Web Presentation",
-      url: "https://github.com/nmatei/web-intro-presentation"
-    },
-    {
-      id: "ezabnf1630345987541",
-      promotion: "css",
-      members: "Nicolae",
-      name: "Names",
-      url: "https://github.com/nmatei/nmatei.github.io"
-    },
-    {
-      id: "86mq81630347385708",
-      promotion: "js",
-      members: "Matei, Andrei",
-      name: "JS/HTML/CSS Quiz",
-      url: "https://github.com/nmatei/simple-quiz-app"
-    },
-    {
-      id: "w2aal1630347411901",
-      promotion: "js",
-      members: "FastTrackIT Students, Nicolae",
-      name: "Teams Networking",
-      url: "https://github.com/nmatei/teams-networking"
-    },
-    {
-      id: "w2aal1630347411902",
-      promotion: "react",
-      members: "FastTrackIT Students, Nicolae",
-      name: "Teams Networking React",
-      url: "https://github.com/nmatei/teams-networking-react"
-    }
-  ];
-
-  // return TeamsTable({ teams: teams });
-
-  return (
-    <>
-      <TeamsTable teams={[]} loading={true} />
-      <hr />
-      <TeamsTable teams={[]} loading={false} />
-      <hr />
-      <TeamsTable teams={teams} loading={true} />
-      <hr />
-      <TeamsTable teams={teams} loading={false} />
-    </>
-  );
+type WrapperProps = {};
+type State = {
+  loading: boolean;
+  teams: Team[];
+};
+// < > daca folosim typescript -> ce prop foloseste, ce state foloseste
+export class TeamsTableWrapper extends React.Component<WrapperProps, State> {
+  constructor(props: WrapperProps) {
+    super(props);
+    console.warn("constructor props", props);
+    this.state = {
+      loading: true,
+      teams: []
+    };
+  }
+  componentDidMount(): void {
+    console.log("mount");
+    setTimeout(() => {
+      console.info("change loading");
+      // @ts-ignore
+      // this.state.loading = false;  // not working as is read only
+      this.setState({
+        loading: false,
+        teams: [
+          {
+            id: "toze8j1610313009673",
+            promotion: "html",
+            members: "Nicolae Matei, HTML",
+            name: "Web Presentation",
+            url: "https://github.com/nmatei/web-intro-presentation"
+          },
+          {
+            id: "ezabnf1630345987541",
+            promotion: "css",
+            members: "Nicolae",
+            name: "Names",
+            url: "https://github.com/nmatei/nmatei.github.io"
+          },
+          {
+            id: "86mq81630347385708",
+            promotion: "js",
+            members: "Matei, Andrei",
+            name: "JS/HTML/CSS Quiz",
+            url: "https://github.com/nmatei/simple-quiz-app"
+          },
+          {
+            id: "w2aal1630347411901",
+            promotion: "js",
+            members: "FastTrackIT Students, Nicolae",
+            name: "Teams Networking",
+            url: "https://github.com/nmatei/teams-networking"
+          },
+          {
+            id: "w2aal1630347411902",
+            promotion: "react",
+            members: "FastTrackIT Students, Nicolae",
+            name: "Teams Networking React",
+            url: "https://github.com/nmatei/teams-networking-react"
+          }
+        ]
+      });
+    }, 5000);
+  }
+  render() {
+    console.log("render");
+    return <TeamsTable teams={this.state.teams} loading={this.state.loading} />;
+  }
 }
+
+// export function TeamsTableWrapper() {
+//   let teams: Team[] = [];
+//   setTimeout(() => {
+//     console.warn("timeout");
+//     teams = [
+//       {
+//         id: "toze8j1610313009673",
+//         promotion: "html",
+//         members: "Nicolae Matei, HTML",
+//         name: "Web Presentation",
+//         url: "https://github.com/nmatei/web-intro-presentation"
+//       },
+//       {
+//         id: "ezabnf1630345987541",
+//         promotion: "css",
+//         members: "Nicolae",
+//         name: "Names",
+//         url: "https://github.com/nmatei/nmatei.github.io"
+//       },
+//       {
+//         id: "86mq81630347385708",
+//         promotion: "js",
+//         members: "Matei, Andrei",
+//         name: "JS/HTML/CSS Quiz",
+//         url: "https://github.com/nmatei/simple-quiz-app"
+//       },
+//       {
+//         id: "w2aal1630347411901",
+//         promotion: "js",
+//         members: "FastTrackIT Students, Nicolae",
+//         name: "Teams Networking",
+//         url: "https://github.com/nmatei/teams-networking"
+//       },
+//       {
+//         id: "w2aal1630347411902",
+//         promotion: "react",
+//         members: "FastTrackIT Students, Nicolae",
+//         name: "Teams Networking React",
+//         url: "https://github.com/nmatei/teams-networking-react"
+//       }
+//     ];
+//   }, 2000);
+
+//   // return TeamsTable({ teams: teams });
+
+//   return (
+//     <>
+//       <TeamsTable teams={[]} loading={true} />
+//       <hr />
+//       <TeamsTable teams={[]} loading={false} />
+//       <hr />
+//       <TeamsTable teams={teams} loading={true} />
+//       <hr />
+//       <TeamsTable teams={teams} loading={false} />
+//     </>
+//   );
+// }
