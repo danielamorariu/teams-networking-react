@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import { getTeamsRequest } from "./middleware";
 
 type Team = {
   id: string;
@@ -110,53 +111,15 @@ export class TeamsTableWrapper extends React.Component<WrapperProps, State> {
       teams: []
     };
   }
-  componentDidMount(): void {
+  async componentDidMount(): Promise<void> {
     console.log("mount");
-    setTimeout(() => {
-      console.info("change loading");
-      // @ts-ignore
-      // this.state.loading = false;  // not working as is read only
-      this.setState({
-        loading: false,
-        teams: [
-          {
-            id: "toze8j1610313009673",
-            promotion: "html",
-            members: "Nicolae Matei, HTML",
-            name: "Web Presentation",
-            url: "https://github.com/nmatei/web-intro-presentation"
-          },
-          {
-            id: "ezabnf1630345987541",
-            promotion: "css",
-            members: "Nicolae",
-            name: "Names",
-            url: "https://github.com/nmatei/nmatei.github.io"
-          },
-          {
-            id: "86mq81630347385708",
-            promotion: "js",
-            members: "Matei, Andrei",
-            name: "JS/HTML/CSS Quiz",
-            url: "https://github.com/nmatei/simple-quiz-app"
-          },
-          {
-            id: "w2aal1630347411901",
-            promotion: "js",
-            members: "FastTrackIT Students, Nicolae",
-            name: "Teams Networking",
-            url: "https://github.com/nmatei/teams-networking"
-          },
-          {
-            id: "w2aal1630347411902",
-            promotion: "react",
-            members: "FastTrackIT Students, Nicolae",
-            name: "Teams Networking React",
-            url: "https://github.com/nmatei/teams-networking-react"
-          }
-        ]
-      });
-    }, 5000);
+
+    const teams = await getTeamsRequest();
+
+    this.setState({
+      loading: false,
+      teams: teams
+    });
   }
   render() {
     console.log("render");
