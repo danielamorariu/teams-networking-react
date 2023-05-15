@@ -19,7 +19,7 @@ export function createTeamRequest(team) {
   }).then(r => r.json());
 }
 
-export function deleteTeamRequest(id, successDelete) {
+export function deleteTeamRequest(id, successDelete?) {
   // console.info(successDelete);
 
   //   DELETE teams-json/delete

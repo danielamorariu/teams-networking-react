@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import { getTeamsRequest } from "./middleware";
+import { deleteTeamRequest, getTeamsRequest } from "./middleware";
 
 type Team = {
   id: string;
@@ -13,9 +13,12 @@ type Props = {
   loading: boolean;
   teams: Team[];
 };
+type Actions = {
+  // deleteTeam: (id: string) => void;
+  deleteTeam(id: string): void;
+};
 
-export function TeamsTable(props: Props) {
-  console.warn("props", props);
+export function TeamsTable(props: Props & Actions) {
   return (
     <form id="editForm" action="" method="post" className={props.loading ? "loading-mask" : ""}>
       <table>
@@ -59,12 +62,15 @@ export function TeamsTable(props: Props) {
                   </a>
                 </td>
                 <td>
-                  <a data-id={id} className="link-btn remove-btn">
+                  <a
+                    className="link-btn"
+                    onClick={() => {
+                      props.deleteTeam(id);
+                    }}
+                  >
                     ✖️
                   </a>
-                  <a data-id={id} className="link-btn edit-btn">
-                    ✎
-                  </a>
+                  <a className="link-btn">✎</a>
                 </td>
               </tr>
             );
@@ -111,76 +117,32 @@ export class TeamsTableWrapper extends React.Component<WrapperProps, State> {
       teams: []
     };
   }
-  async componentDidMount(): Promise<void> {
+  componentDidMount(): void {
     console.log("mount");
+    this.loadTeams();
+  }
 
+  async loadTeams() {
     const teams = await getTeamsRequest();
-
     this.setState({
       loading: false,
       teams: teams
     });
   }
+
   render() {
     console.log("render");
-    return <TeamsTable teams={this.state.teams} loading={this.state.loading} />;
+    return (
+      <TeamsTable
+        teams={this.state.teams}
+        loading={this.state.loading}
+        deleteTeam={async id => {
+          console.warn("to do: please reemove this team", id);
+          const status = await deleteTeamRequest(id);
+          console.warn("status", status);
+          this.loadTeams();
+        }}
+      />
+    );
   }
 }
-
-// export function TeamsTableWrapper() {
-//   let teams: Team[] = [];
-//   setTimeout(() => {
-//     console.warn("timeout");
-//     teams = [
-//       {
-//         id: "toze8j1610313009673",
-//         promotion: "html",
-//         members: "Nicolae Matei, HTML",
-//         name: "Web Presentation",
-//         url: "https://github.com/nmatei/web-intro-presentation"
-//       },
-//       {
-//         id: "ezabnf1630345987541",
-//         promotion: "css",
-//         members: "Nicolae",
-//         name: "Names",
-//         url: "https://github.com/nmatei/nmatei.github.io"
-//       },
-//       {
-//         id: "86mq81630347385708",
-//         promotion: "js",
-//         members: "Matei, Andrei",
-//         name: "JS/HTML/CSS Quiz",
-//         url: "https://github.com/nmatei/simple-quiz-app"
-//       },
-//       {
-//         id: "w2aal1630347411901",
-//         promotion: "js",
-//         members: "FastTrackIT Students, Nicolae",
-//         name: "Teams Networking",
-//         url: "https://github.com/nmatei/teams-networking"
-//       },
-//       {
-//         id: "w2aal1630347411902",
-//         promotion: "react",
-//         members: "FastTrackIT Students, Nicolae",
-//         name: "Teams Networking React",
-//         url: "https://github.com/nmatei/teams-networking-react"
-//       }
-//     ];
-//   }, 2000);
-
-//   // return TeamsTable({ teams: teams });
-
-//   return (
-//     <>
-//       <TeamsTable teams={[]} loading={true} />
-//       <hr />
-//       <TeamsTable teams={[]} loading={false} />
-//       <hr />
-//       <TeamsTable teams={teams} loading={true} />
-//       <hr />
-//       <TeamsTable teams={teams} loading={false} />
-//     </>
-//   );
-// }
